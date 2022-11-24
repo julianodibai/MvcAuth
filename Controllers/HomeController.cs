@@ -16,6 +16,9 @@ public class HomeController : Controller
         if (erroLogin)
             ViewBag.Erro = "Invalid username or password";
 
+        if(HttpContext.User.Identity.IsAuthenticated) //caso esteja logado, não consegue voltar pro index, apenas com logout
+           return RedirectToAction("Profile");
+
         return View();
     }
 
